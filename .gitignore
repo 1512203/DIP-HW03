@@ -31,5 +31,11 @@
 *.out
 *.app
 
-# Vim
+# Vim .swap files
 *.swp
+
+# Release folder
+build/*
+
+# Resources folder
+images/*
