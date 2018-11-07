@@ -14,6 +14,12 @@ void BaseProcessor::execute(argv_t kwargs) {
 }
 
 
+Mat BaseProcessor::processImage(argv_t kwargs) {
+    Mat result = Mat::zeros( this->image.size(), this->image.type() );
+    return result;
+}
+
+
 BaseProcessor::~BaseProcessor() {
     //
 }

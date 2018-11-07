@@ -14,13 +14,18 @@ set( CMAKE_CXX_EXTENSIONS OFF )
 
 # Project sources
 set ( SOURCE_DIR src )
+set ( SOURCE_AFFINETRANSFORM src/affine_transforms )
 set ( PROJECT_SOURCES 
     ${SOURCE_DIR}/common.h 
     ${SOURCE_DIR}/common.cpp 
     ${SOURCE_DIR}/BaseProcessor.h
     ${SOURCE_DIR}/BaseProcessor.cpp
-    ${SOURCE_DIR}/GeometricTransformProcessor.h
-    ${SOURCE_DIR}/GeometricTransformProcessor.cpp
+    ${SOURCE_DIR}/ConservativeRotation.h
+    ${SOURCE_DIR}/ConservativeRotation.cpp
+    ${SOURCE_DIR}/Scaling.h
+    ${SOURCE_DIR}/Scaling.cpp
+    ${SOURCE_AFFINETRANSFORM}/AffineTransform.h
+    ${SOURCE_AFFINETRANSFORM}/AffineTransform.cpp
 )
 
 # The main program

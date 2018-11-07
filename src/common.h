@@ -6,6 +6,7 @@
 /* Include libraries */
 
 // C Library
+#include <cmath>
 #include <cstring>
 
 // C++ Standard Libraries
@@ -76,9 +77,10 @@ typedef map<string, void*> argv_json;
 
 #define COMMAND_GEOMETRIC_TRANSFORMATION_ROTATE_RESERVE 	"--rotate"
 #define COMMAND_GEOMETRIC_TRANSFORMATION_ROTATE_NONRESERVE	"--rotateN"
-#define COMMAND_GEOMETRIC_TRANSFORMATION_SCALE				"--rotate"
+#define COMMAND_GEOMETRIC_TRANSFORMATION_SCALE				"--scale"
 
 const double EPSILON = 1E-9;
+const int ooInt = 2147483647;
 
 
 /* Some utility function */
