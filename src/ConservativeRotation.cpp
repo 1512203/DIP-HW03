@@ -26,16 +26,35 @@ Mat ConservativeRotation::processImage(argv_t kwargs) {
     int newW = maxX - minX + 1;
     int newH = maxY - minY + 1;
     Mat result = Mat::zeros(newH, newW, this->image.type());
+    bool *isAssigned = new bool[newH * newW];
+    memset(isAssigned, 0, sizeof(bool) * newH * newW);
+
     for (int y = 0; y < H; ++y) {
         for (int x = 0; x < W; ++x) {
             AffineTransform* t = new AffineTransform(x, y);
             t = t -> translate(-(W - 1.0) / 2.0, -(H - 1.0) / 2.0)
                   -> rotate(theta)
-                  -> translate((W - 1.0) / 2.0, (H - 1.0) / 2.0);
-            result.at<Vec3b>(t->getIntY() - minY, t->getIntX() - minX) = this->image.at<Vec3b>(y, x);
+                  -> translate((W - 1.0) / 2.0, (H - 1.0) / 2.0)
+                  -> translate(-minX, -minY);
+            result.at<Vec3b>(t->getIntY(), t->getIntX()) = this->image.at<Vec3b>(y, x);
+            isAssigned[t->getIntY() * newW + t->getIntX()] = 1;
             delete t;
         }
     }
+
+    for (int y = 0; y < result.rows; ++y) {
+        for (int x = 0; x < result.cols; ++x) 
+            if (!isAssigned[y * newW + x]) {
+                AffineTransform* t = new AffineTransform(x, y);
+                t = t -> translate(minX, minY)
+                      -> translate(-(W - 1.0) / 2.0, -(H - 1.0) / 2.0)
+                      -> rotate(-theta)
+                      -> translate((W - 1.0) / 2.0, (H - 1.0) / 2.0);
+                this->pixelInterpolation(t, &result);
+                delete t;
+            }
+    }
+    delete[] isAssigned;
     return result;
 }
 

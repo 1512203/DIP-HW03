@@ -1,6 +1,7 @@
 #ifndef CONSERVATIVEROTATION_INCLUDED
 #define CONSERVATIVEROTATION_INCLUDED
 
+#include "common.h"
 #include "BaseProcessor.h"
 #include "affine_transforms/AffineTransform.h"
 
