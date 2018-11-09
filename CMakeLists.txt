@@ -22,6 +22,8 @@ set ( PROJECT_SOURCES
     ${SOURCE_DIR}/BaseProcessor.cpp
     ${SOURCE_DIR}/ConservativeRotation.h
     ${SOURCE_DIR}/ConservativeRotation.cpp
+    ${SOURCE_DIR}/NonConservativeRotation.h
+    ${SOURCE_DIR}/NonConservativeRotation.cpp
     ${SOURCE_DIR}/Scaling.h
     ${SOURCE_DIR}/Scaling.cpp
     ${SOURCE_AFFINETRANSFORM}/AffineTransform.h

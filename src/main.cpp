@@ -1,6 +1,7 @@
 #include "common.h"
 #include "BaseProcessor.h"
 #include "ConservativeRotation.h"
+#include "NonConservativeRotation.h"
 #include "Scaling.h"
 
 int main(int argc, char* argv[]) {
@@ -24,6 +25,12 @@ int main(int argc, char* argv[]) {
         kwargs["theta"] = argv[3];
     }
     else if (strcmp(command, COMMAND_GEOMETRIC_TRANSFORMATION_ROTATE_NONRESERVE) == 0) {
+        if (argc < 4) {
+            cerr << ERROR_MESS_INVALID_ARGUMENTS << endl;
+            return -1;
+        }
+        proc = new NonConservativeRotation(pathToImage);
+        kwargs["theta"] = argv[3];
     }
     else if (strcmp(command, COMMAND_GEOMETRIC_TRANSFORMATION_SCALE) == 0) {
         if (argc < 5) {
